@@ -55,7 +55,8 @@ function test(links){
           'Numer katalogowy:',
           '<',
           '<',
-          34
+          34,
+          'Strefa Kierowcy'
         );
       } else if(index===1){
         getData(
@@ -64,7 +65,8 @@ function test(links){
           '<span itemprop="mpn">',
           '"',
           '<',
-          0
+          0,
+          'iParts'
           );
       } else if(index===2){
         getData(
@@ -73,14 +75,15 @@ function test(links){
           '<span itemprop="sku">',
           '"',
           '<',
-          0
+          0,
+          'abc-Filter'
         )
       }
     });
   })
 }
 
-function getData(result, priceContainer, idContainer, priceEndStr, idEndStr, idLength){
+function getData(result, priceContainer, idContainer, priceEndStr, idEndStr, idLength, siteName){
   let infoDiv = document.getElementById('info');
 
   const priceLength = priceContainer.length;
@@ -94,7 +97,7 @@ function getData(result, priceContainer, idContainer, priceEndStr, idEndStr, idL
   const cena = priceResult.slice(0, priceEnd);
   const kod = idResult.slice(0, idEnd);
 
-  infoDiv.innerHTML += `Cena: ${cena} </br>Kod: ${kod} </br></br>`;
+  infoDiv.innerHTML += `<strong>${siteName}</strong></br>Cena: ${cena} </br>Kod: ${kod} </br></br>`;
 }
 
 
