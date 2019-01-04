@@ -15,17 +15,6 @@ function doCORSRequest(options, printResult) {
   x.send(options.data);
 }
 
-let urls = [
-    {
-      name: "Tururu",
-      links:[
-              'https://www.strefakierowcy.pl/18043,filtron-op531.html?fbclid=IwAR1W9izJNoKeDPWo5KVfsn3maiMD9de_AKmAzFwCByn2SbA7dntNSLBpz3Y',
-              'https://www.iparts.pl/czesc/filtr-oleju-filtron-op531,0-256-op531-146228.html?fbclid=IwAR1qwd5t8SPioJm_jI-c5YaDLaVbN6V5fMCP1ckedl9dRxenWNQnEVaVdAE',
-              'https://www.abc-filter.pl/sklep/filtry-oleju/13596-filtron-op-531-filtr-oleju-filtron-op531.html?fbclid=IwAR3ykpAzgkAmct0zThu_qkwTUEDiJCOslNkdCnkEdTxj9_SXfTJwfK8Ji10'
-            ]
-    },
-];
-
 function loopThrough() {
 urls.forEach(function(obj){
   let name = obj.name;
@@ -35,7 +24,7 @@ urls.forEach(function(obj){
   button.appendChild(buttonText);
   button.onclick = function() {
     test(links);
-  }
+  };
   document.body.appendChild(button);
 })
 }
@@ -56,7 +45,8 @@ function test(links){
           '<',
           '<',
           34,
-          'Strefa Kierowcy'
+          'Strefa Kierowcy',
+          item
         );
       } else if(index===1){
         getData(
@@ -66,7 +56,8 @@ function test(links){
           '"',
           '<',
           0,
-          'iParts'
+          'iParts',
+          item
           );
       } else if(index===2){
         getData(
@@ -76,14 +67,15 @@ function test(links){
           '"',
           '<',
           0,
-          'abc-Filter'
+          'abc-Filter',
+          item
         )
       }
     });
   })
 }
 
-function getData(result, priceContainer, idContainer, priceEndStr, idEndStr, idLength, siteName){
+function getData(result, priceContainer, idContainer, priceEndStr, idEndStr, idLength, siteName, site){
   let infoDiv = document.getElementById('info');
 
   const priceLength = priceContainer.length;
@@ -97,7 +89,7 @@ function getData(result, priceContainer, idContainer, priceEndStr, idEndStr, idL
   const cena = priceResult.slice(0, priceEnd);
   const kod = idResult.slice(0, idEnd);
 
-  infoDiv.innerHTML += `<strong>${siteName}</strong></br>Cena: ${cena} </br>Kod: ${kod} </br></br>`;
+  infoDiv.innerHTML += `<a href="${site}" target="_blank"><strong>${siteName}</strong></a></br>Cena: ${cena} </br>Kod: ${kod} </br></br>`;
 }
 
 
